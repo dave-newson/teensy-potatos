@@ -1,0 +1,7 @@
+# PlatformIO
+.pioenvs
+.clang_complete
+.gcc-flags.json
+
+# Binaries
+/audio
