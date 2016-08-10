@@ -27,6 +27,7 @@ void DialogEngineDfPlayerAdapter::sayDialog(Dialog dialog)
 
 bool DialogEngineDfPlayerAdapter::isSpeaking()
 {
-    boolean play_state = digitalRead(config.busyPin); // connect Pin3 to BUSY pin of player
+    // Read busy-pin state
+    boolean play_state = digitalRead(config.busyPin);
     return (play_state == LOW);
 }

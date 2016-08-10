@@ -3,6 +3,8 @@
 
 #include "Personality\Abstract\PersonalityCore.h"
 #include "Service\DialogEngine\DialogEngine.h"
+#include "Dialog/SpaceCoreDialog.h"
+
 
 class SpaceCore : public PersonalityCore
 {
@@ -30,7 +32,7 @@ public:
     /**
      * Say a line of dialog
      */
-    void SayDialog(Dialog dialog);
+    void SayDialog(Dialog dialog);;
 
 };
 

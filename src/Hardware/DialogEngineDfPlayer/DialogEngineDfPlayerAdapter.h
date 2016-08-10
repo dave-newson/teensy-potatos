@@ -16,8 +16,16 @@ public:
      * Hardware pin configuration
      */
     struct Config {
+        /**
+         * Busy pin
+         * Moves to HIGH when not speaking
+         */
         int busyPin;
-        int volume; // 0 - 100
+
+        /**
+         * Audio Volume (0-100)
+         */
+        int volume;
     };
 
     /**
@@ -26,16 +34,27 @@ public:
      */
     DialogEngineDfPlayerAdapter(SoftwareSerial &pSerial, Config userConfig);
 
+    /**
+     * Boot the DialogEngine.
+     * Sets up serial and pins for DfPlayer
+     */
     void boot();
 
+    /**
+     * Tell DfPlayer to play the numbered dialog item
+     */
     void sayDialog(Dialog dialog);
 
+    /**
+     * Check the BusyPin signal.
+     * If low; speaking.
+     */
     bool isSpeaking();
 
 private:
 
     /**
-     * Configuration
+     * Configuration struct
      */
     Config config;
 

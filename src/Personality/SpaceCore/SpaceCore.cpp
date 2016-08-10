@@ -1,9 +1,11 @@
 #include "SpaceCore.h"
 #include "Dialog/SpaceCoreDialog.h"
+#include "Util/Collection/Collection.h"
 
 void SpaceCore::boot()
 {
-    // TODO: Load state machine
+    // Say Hello
+    SayDialog(SpaceCoreDialog::Hello);
 }
 
 void SpaceCore::shutdown()
@@ -13,9 +15,19 @@ void SpaceCore::shutdown()
 
 void SpaceCore::tick()
 {
-    // Say hello repeatedly
+    // Random selectable collection
+    SpaceCoreDialog::SpaceCoreDialog arr[] = {
+        SpaceCoreDialog::Babble1,
+        SpaceCoreDialog::Babble2,
+        SpaceCoreDialog::Babble3,
+        SpaceCoreDialog::Babble4
+    };
+    Collection<SpaceCoreDialog::SpaceCoreDialog> babble(arr);
+
+    // Babble incessently
     if (!dialogEngine->isSpeaking()) {
-        SayDialog(SpaceCoreDialog::Hello);
+        SpaceCoreDialog::SpaceCoreDialog line = babble.pickRandom();
+        SayDialog(line);
     }
 }
 

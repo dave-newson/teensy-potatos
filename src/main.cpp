@@ -17,9 +17,11 @@ os48::Task* task1 = NULL;
 os48::Task* task2 = NULL;
 os48::Task* task3 = NULL;
 
-// Asynchronous Blink test code
+// Asynchronous Blink: 1s external LED
 void blink1()
 {
+    pinMode(9, OUTPUT);
+
     for(;;) {
         digitalWrite(9, HIGH);
         os48::task()->sleep(1000);
@@ -28,27 +30,28 @@ void blink1()
     }
 }
 
-// Asynchronous Blink test code
+// Asynchronous Blink: 250ms on-board LED
 void blink2()
 {
+    pinMode(13, OUTPUT);
+
     for(;;) {
-        digitalWrite(9, HIGH);
+        digitalWrite(13, HIGH);
         os48::task()->sleep(250);
-        digitalWrite(9, LOW);
+        digitalWrite(13, LOW);
         os48::task()->sleep(250);
     }
 }
 
 // FIXME: Fix this hack - OS48 needs to support Delegate functions
-// Define SpaceCore globally So we can use it in Setup and in SpaceSphereTick.
+// We must define SpaceCore globally so it can be used in a static for os48.
 SpaceCore *spaceCore = NULL;
-
-// FIXME
 // Now define a static Tick function so we can use os48 Task Function Pointers
 void SpaceCoreTick()
 {
     spaceCore->tick();
 }
+// FIXME: end
 
 void setup()
 {
@@ -65,15 +68,12 @@ void setup()
     DialogEngineDfPlayerAdapter dialogAdapter(serial, dialogConfig);
     DialogEngine dialogEngine(dialogAdapter);
 
-    // Blink Outputs
-    pinMode(9, OUTPUT);
-    pinMode(13, OUTPUT);
-
     // Create Space Core
     spaceCore = new SpaceCore(dialogEngine);
+    spaceCore->boot();
 
 // TODO: OR48 needs to support Delegate functions in order to use object
-//       instances instead of statics. Boo. Boo I say.
+//       instances instead of statics. Boo I say. Boo.
 //    typedef srutil::delegate<void (void)> TaskDelegate;
 //    TaskDelegate d = TaskDelegate::from_method<SpaceCore, &SpaceCore::tick>(&spaceCore);
 
