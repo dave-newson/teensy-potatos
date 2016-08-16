@@ -37,9 +37,9 @@ void blink2()
 
     for(;;) {
         digitalWrite(13, HIGH);
-        os48::task()->sleep(250);
+        os48::task()->sleep(300);
         digitalWrite(13, LOW);
-        os48::task()->sleep(250);
+        os48::task()->sleep(300);
     }
 }
 
@@ -49,7 +49,10 @@ SpaceCore *spaceCore = NULL;
 // Now define a static Tick function so we can use os48 Task Function Pointers
 void SpaceCoreTick()
 {
-    spaceCore->tick();
+    for(;;) {
+        spaceCore->tick();
+        os48::task()->sleep(2000);
+    }
 }
 // FIXME: end
 
@@ -57,12 +60,13 @@ void setup()
 {
     // Debug Serial
     Serial.begin(9600);
+    Serial.println("KERNEL BOOT");
 
     // DialogEngine Hardware
     SoftwareSerial serial(10, 11); // RX, TX
     DialogEngineDfPlayerAdapter::Config dialogConfig;
     dialogConfig.busyPin = 3;
-    dialogConfig.volume = 50;
+    dialogConfig.volume = 20;
 
     // DialogEngine
     DialogEngineDfPlayerAdapter dialogAdapter(serial, dialogConfig);
@@ -82,7 +86,7 @@ void setup()
 
     // Begin blick subtasks
     task2 = scheduler->createTask(&blink1, 60);
-    task2 = scheduler->createTask(&blink2, 60);
+    task3 = scheduler->createTask(&blink2, 60);
 
     // Run
     scheduler->start();

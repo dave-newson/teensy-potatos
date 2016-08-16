@@ -11,7 +11,7 @@ void DialogEngine::sayDialog(Dialog dialog)
     adapter->sayDialog(dialog);
 }
 
-bool DialogEngine::isSpeaking(void)
+bool DialogEngine::isSpeaking()
 {
     return adapter->isSpeaking();
 }

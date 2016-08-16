@@ -14,20 +14,23 @@ void DialogEngineDfPlayerAdapter::boot()
     mp3_set_serial(*serial);
 
     // Have to delay 1ms after Serial init before setting the volume (?)
-    delay(1);
+    delay(10);
 
     // Recalculate the volume from 0-100 to 0-30.
     mp3_set_volume(ceil((config.volume/10)*30));
+
+    pinMode(config.busyPin, INPUT);
 }
 
 void DialogEngineDfPlayerAdapter::sayDialog(Dialog dialog)
 {
-    mp3_play(dialog.id);
+    // mp3_play_physical(dialog.id);
+    Serial.println("SAY");
 }
 
 bool DialogEngineDfPlayerAdapter::isSpeaking()
 {
     // Read busy-pin state
-    boolean play_state = digitalRead(config.busyPin);
+    bool play_state = digitalRead(config.busyPin);
     return (play_state == LOW);
 }

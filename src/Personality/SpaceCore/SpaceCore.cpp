@@ -1,6 +1,8 @@
 #include "SpaceCore.h"
 #include "Dialog/SpaceCoreDialog.h"
 #include "Util/Collection/Collection.h"
+#include "os48.h"
+#include "Arduino.h"
 
 void SpaceCore::boot()
 {
@@ -24,9 +26,12 @@ void SpaceCore::tick()
     };
     Collection<SpaceCoreDialog::SpaceCoreDialog> babble(arr);
 
-    // Babble incessently
+    // Babble incessantly
     if (!dialogEngine->isSpeaking()) {
         SpaceCoreDialog::SpaceCoreDialog line = babble.pickRandom();
+        Serial.print("Line = ");
+        Serial.print(line.id);
+        Serial.println("");
         SayDialog(line);
     }
 }
