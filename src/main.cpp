@@ -45,16 +45,31 @@ void blink2()
 
 // FIXME: Fix this hack - OS48 needs to support Delegate functions
 // We must define SpaceCore globally so it can be used in a static for os48.
-SpaceCore *spaceCore = NULL;
+
+
+    // DialogEngine Hardware
+    SoftwareSerial serial(10, 11); // RX, TX
+    DialogEngineDfPlayerAdapter::Config dialogConfig;
+
+    // DialogEngine
+    DialogEngineDfPlayerAdapter dialogAdapter(serial, dialogConfig);
+    DialogEngine dialogEngine(dialogAdapter);
+
+    // Create Space Core
+    SpaceCore spaceCore(dialogEngine);
+
+
 // Now define a static Tick function so we can use os48 Task Function Pointers
 void SpaceCoreTick()
 {
     for(;;) {
-        spaceCore->tick();
+        Serial.println(".");
+        spaceCore.tick();
         os48::task()->sleep(2000);
     }
 }
 // FIXME: end
+
 
 void setup()
 {
@@ -62,19 +77,8 @@ void setup()
     Serial.begin(9600);
     Serial.println("KERNEL BOOT");
 
-    // DialogEngine Hardware
-    SoftwareSerial serial(10, 11); // RX, TX
-    DialogEngineDfPlayerAdapter::Config dialogConfig;
     dialogConfig.busyPin = 3;
     dialogConfig.volume = 20;
-
-    // DialogEngine
-    DialogEngineDfPlayerAdapter dialogAdapter(serial, dialogConfig);
-    DialogEngine dialogEngine(dialogAdapter);
-
-    // Create Space Core
-    spaceCore = new SpaceCore(dialogEngine);
-    spaceCore->boot();
 
 // TODO: OR48 needs to support Delegate functions in order to use object
 //       instances instead of statics. Boo I say. Boo.
@@ -89,6 +93,8 @@ void setup()
     task3 = scheduler->createTask(&blink2, 60);
 
     // Run
+    dialogAdapter.boot();
+    spaceCore.boot();
     scheduler->start();
 }
 

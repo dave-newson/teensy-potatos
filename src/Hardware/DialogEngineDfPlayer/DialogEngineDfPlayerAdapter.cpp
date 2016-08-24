@@ -3,7 +3,7 @@
 
 DialogEngineDfPlayerAdapter::DialogEngineDfPlayerAdapter(SoftwareSerial &pSerial, Config userConfig)
 {
-    config = userConfig;
+    config = &userConfig;
     serial = &pSerial;
 }
 
@@ -17,20 +17,25 @@ void DialogEngineDfPlayerAdapter::boot()
     delay(10);
 
     // Recalculate the volume from 0-100 to 0-30.
-    mp3_set_volume(ceil((config.volume/10)*30));
+    mp3_set_volume(ceil((config->volume/10)*30));
 
-    pinMode(config.busyPin, INPUT);
+    pinMode(config->busyPin, INPUT);
 }
 
 void DialogEngineDfPlayerAdapter::sayDialog(Dialog dialog)
 {
-    // mp3_play_physical(dialog.id);
-    Serial.println("SAY");
+
+    Serial.print("Line = ");
+    Serial.print(dialog.id);
+    Serial.println("");
+    delay(10);
+
+    mp3_play_physical(dialog.id);
 }
 
 bool DialogEngineDfPlayerAdapter::isSpeaking()
 {
     // Read busy-pin state
-    bool play_state = digitalRead(config.busyPin);
-    return (play_state == LOW);
+    bool state = digitalRead(config->busyPin);
+    return state == LOW;
 }

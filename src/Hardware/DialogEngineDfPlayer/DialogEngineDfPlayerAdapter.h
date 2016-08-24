@@ -56,7 +56,7 @@ private:
     /**
      * Configuration struct
      */
-    Config config;
+    Config *config;
 
     /**
      * Software Serial connection
