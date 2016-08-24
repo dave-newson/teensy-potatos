@@ -1,6 +1,14 @@
+# PlatformIO
 .pioenvs
 .clang_complete
 .gcc-flags.json
-# PlatformIO
+/libs/readme.txt
+
+# IDEs
+/.idea
+
 # Binaries
 /audio
+
+# Libs extras
+/lib/os48/doc
