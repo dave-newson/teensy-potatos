@@ -8,20 +8,21 @@ class Collection
 {
 public:
 
-    Collection(TObject arrayData[]) {
-        collection = arrayData;
+    Collection(TObject collectionData[], int collectionSize) {
+        collection = collectionData;
+        size = collectionSize;
     };
 
-    TObject pickRandom(void) {
+    TObject pickRandom(TObject collection[]) {
 
         srand(millis());
-        const size_t n = sizeof(collection) / sizeof(collection[0]);
-
-        return collection[rand() % n];
+        return collection[rand() % size];
     };
 
 private:
     TObject *collection;
+
+    int size = 0;
 };
 
 #endif

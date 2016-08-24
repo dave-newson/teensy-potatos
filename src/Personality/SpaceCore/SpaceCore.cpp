@@ -24,14 +24,13 @@ void SpaceCore::tick()
         SpaceCoreDialog::Babble3,
         SpaceCoreDialog::Babble4
     };
-    Collection<SpaceCoreDialog::SpaceCoreDialog> babble(arr);
+    Collection<SpaceCoreDialog::SpaceCoreDialog> babble(arr, 4);
 
     // Babble incessantly
     if (!dialogEngine->isSpeaking()) {
+
+        // Random selectable collection
         SpaceCoreDialog::SpaceCoreDialog line = babble.pickRandom();
-        Serial.print("Line = ");
-        Serial.print(line.id);
-        Serial.println("");
         SayDialog(line);
     }
 }
