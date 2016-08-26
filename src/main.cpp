@@ -8,9 +8,8 @@
 
 // DialogEngine
 #include "SoftwareSerial.h"
-#include "Service/DialogEngine/DialogEngine.h"
-#include "Service/DialogEngine/DialogEngineAdapter.h"
-#include "Hardware/DialogEngineDfPlayer/DialogEngineDfPlayerAdapter.h"
+#include "Potatos/DialogEngine/DialogEngine.h"
+#include "Driver/Dialog/DfPlayerDriver/Driver.h"
 
 os48::Scheduler* scheduler = os48::Scheduler::get();
 os48::Task* task1 = NULL;
@@ -49,11 +48,11 @@ void blink2()
 
     // DialogEngine Hardware
     SoftwareSerial serial(10, 11); // RX, TX
-    DialogEngineDfPlayerAdapter::Config dialogConfig;
+    DialogEngineDfPlayerDriver::Config dialogConfig;
 
     // DialogEngine
-    DialogEngineDfPlayerAdapter dialogAdapter(serial, dialogConfig);
-    DialogEngine dialogEngine(dialogAdapter);
+    DialogEngineDfPlayerDriver dialogDriver(serial, dialogConfig);
+    DialogEngine dialogEngine(dialogDriver);
 
     // Create Space Core
     SpaceCore spaceCore(dialogEngine);
@@ -93,7 +92,7 @@ void setup()
     task3 = scheduler->createTask(&blink2, 60);
 
     // Run
-    dialogAdapter.boot();
+    dialogDriver.boot();
     spaceCore.boot();
     scheduler->start();
 }
