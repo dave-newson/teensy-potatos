@@ -1,13 +1,13 @@
-#include "DialogEngineDfPlayerAdapter.h"
+#include "Driver.h"
 #include "DFPlayer_Mini_Mp3.h"
 
-DialogEngineDfPlayerAdapter::DialogEngineDfPlayerAdapter(SoftwareSerial &pSerial, Config userConfig)
+DialogEngineDfPlayerDriver::DialogEngineDfPlayerDriver(SoftwareSerial &pSerial, Config userConfig)
 {
     config = &userConfig;
     serial = &pSerial;
 }
 
-void DialogEngineDfPlayerAdapter::boot()
+void DialogEngineDfPlayerDriver::boot()
 {
     // Establish link to DfPlayer using Serial
     serial->begin(9600);
@@ -22,7 +22,7 @@ void DialogEngineDfPlayerAdapter::boot()
     pinMode(config->busyPin, INPUT);
 }
 
-void DialogEngineDfPlayerAdapter::sayDialog(Dialog dialog)
+void DialogEngineDfPlayerDriver::sayDialog(Dialog dialog)
 {
 
     Serial.print("Line = ");
@@ -33,7 +33,7 @@ void DialogEngineDfPlayerAdapter::sayDialog(Dialog dialog)
     mp3_play_physical(dialog.id);
 }
 
-bool DialogEngineDfPlayerAdapter::isSpeaking()
+bool DialogEngineDfPlayerDriver::isSpeaking()
 {
     // Read busy-pin state
     bool state = digitalRead(config->busyPin);

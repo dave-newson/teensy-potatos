@@ -1,13 +1,13 @@
-#ifndef _POTATOS_HARDWARE_DIALOGENGINEDFPLAYERADAPTER_H_
-#define _POTATOS_HARDWARE_DIALOGENGINEDFPLAYERADAPTER_H_
+#ifndef _POTATOS_DRIVER_DIALOG_DFPLAYERDRIVER_DRIVER_H_
+#define _POTATOS_DRIVER_DIALOG_DFPLAYERDRIVER_DRIVER_H_
 
-#include "Service/DialogEngine/DialogEngineAdapter.h"
+#include "Potatos/DialogEngine/DialogEngineDriver.h"
 #include "SoftwareSerial.h"
 
 /**
- * Implements DialogAdapter on the DFPlayer MP3 Mini
+ * Implements DialogDriver on the DFPlayer MP3 Mini
  */
-class DialogEngineDfPlayerAdapter : public DialogEngineAdapter
+class DialogEngineDfPlayerDriver : public DialogEngineDriver
 {
 
 public:
@@ -32,7 +32,7 @@ public:
      * Dependency Injction
      * Requires a serial port on boot
      */
-    DialogEngineDfPlayerAdapter(SoftwareSerial &pSerial, Config userConfig);
+    DialogEngineDfPlayerDriver(SoftwareSerial &pSerial, Config userConfig);
 
     /**
      * Boot the DialogEngine.

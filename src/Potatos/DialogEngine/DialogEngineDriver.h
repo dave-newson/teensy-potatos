@@ -1,12 +1,12 @@
-#ifndef _POTATOS_SERVICE_DIALOGENGINE_DIALOGADAPTER_H_
-#define _POTATOS_SERVICE_DIALOGENGINE_DIALOGADAPTER_H_
+#ifndef _POTATOS_POTATOS_DIALOGENGINE_DIALOGENGINEDRIVER_H_
+#define _POTATOS_POTATOS_DIALOGENGINE_DIALOGENGINEDRIVER_H_
 
 #include "Dialog.h"
 
 /**
  * Hardware implementaton of the Dialog system
  */
-class DialogEngineAdapter
+class DialogEngineDriver
 {
 
 public:

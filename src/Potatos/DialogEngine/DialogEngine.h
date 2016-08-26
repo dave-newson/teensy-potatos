@@ -1,8 +1,8 @@
-#ifndef _POTATOS_SERVICE_DIALOGENGINE_DIALOGENGINE_H_
-#define _POTATOS_SERVICE_DIALOGENGINE_DIALOGENGINE_H_
+#ifndef _POTATOS_POTATOS_DIALOGENGINE_DIALOGENGINE_H_
+#define _POTATOS_POTATOS_DIALOGENGINE_DIALOGENGINE_H_
 
 #include "Dialog.h"
-#include "DialogEngineAdapter.h"
+#include "DialogEngineDriver.h"
 
 /**
  * DialogEngine
@@ -16,7 +16,7 @@ public:
      * Dependency Injection
      * Dialog is a facade for the final hardware implmenetation
      */
-    DialogEngine(DialogEngineAdapter &adapter);
+    DialogEngine(DialogEngineDriver &adapter);
 
     /**
      * Say the corresponding line of dialog
@@ -35,7 +35,7 @@ private:
     /**
      * Hardware Adapter
      */
-    DialogEngineAdapter *adapter;
+    DialogEngineDriver *driver;
 
 };
 
