@@ -1,8 +1,8 @@
 #ifndef _POTATOS_PERSONALITY_SPACECORE_SPACECORE_H_
 #define _POTATOS_PERSONALITY_SPACECORE_SPACECORE_H_
 
-#include "Personality\Abstract\PersonalityCore.h"
-#include "Service\DialogEngine\DialogEngine.h"
+#include "Potatos/Personality/PersonalityCore.h"
+#include "Potatos/DialogEngine/DialogEngine.h"
 #include "Dialog/SpaceCoreDialog.h"
 
 

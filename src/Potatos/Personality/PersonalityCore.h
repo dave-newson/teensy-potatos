@@ -1,7 +1,7 @@
-#ifndef _POTATOS_PERSONALITY_ABSTRACT_PERSONALITYCORE_H_
-#define _POTATOS_PERSONALITY_ABSTRACT_PERSONALITYCORE_H_
+#ifndef _POTATOS_POTATOS_PERSONALITY_PERSONALITYCORE_H_
+#define _POTATOS_POTATOS_PERSONALITY_PERSONALITYCORE_H_
 
-#include "Service/DialogEngine/DialogEngine.h"
+#include "Potatos/DialogEngine/DialogEngine.h"
 
 class PersonalityCore
 {
