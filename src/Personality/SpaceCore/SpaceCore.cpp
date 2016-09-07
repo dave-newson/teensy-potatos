@@ -1,6 +1,6 @@
 #include "SpaceCore.h"
 #include "Dialog/SpaceCoreDialog.h"
-#include "Framework/Collection/Collection.h"
+//#include "Framework/Collection/Collection.h"
 #include "os48.h"
 #include "Arduino.h"
 
@@ -17,6 +17,7 @@ void SpaceCore::shutdown()
 
 void SpaceCore::tick()
 {
+    /* TODO: Enable when Collection works
     // Random selectable collection
     SpaceCoreDialog::SpaceCoreDialog arr[] = {
         SpaceCoreDialog::Babble1,
@@ -32,6 +33,12 @@ void SpaceCore::tick()
         // Random selectable collection
         SpaceCoreDialog::SpaceCoreDialog line = babble.pickRandom();
         SayDialog(line);
+    }
+    */
+
+    // TODO: Reinstate above code when Collection works.
+    if (!dialogEngine->isSpeaking()) {
+        SayDialog(SpaceCoreDialog::Babble1);
     }
 }
 
