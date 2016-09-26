@@ -1,5 +1,9 @@
 # PotatOS, Aperture Science Multiple-Personality Core
 
+An interactive multiple-personality artificial intelligence core based on PotatOS.
+
+[![Build Status](https://travis-ci.org/dave-newson/teensy-potatos.svg?branch=master)](https://travis-ci.org/dave-newson/teensy-potatos)
+
 No documentation here yet. See below for rambling concepts
 
 ## Space Core Test Behaviour
