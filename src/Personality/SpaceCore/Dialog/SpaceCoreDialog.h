@@ -17,13 +17,13 @@ namespace SpaceCoreDialog
     };
 
     // Switch-on Hello
-    const static SpaceCoreDialog Hello(1);
+    const SpaceCoreDialog Hello(1);
 
     // Babble
-    const static SpaceCoreDialog Babble1(2);
-    const static SpaceCoreDialog Babble2(3);
-    const static SpaceCoreDialog Babble3(4);
-    const static SpaceCoreDialog Babble4(5);
+    const SpaceCoreDialog Babble1(2);
+    const SpaceCoreDialog Babble2(3);
+    const SpaceCoreDialog Babble3(4);
+    const SpaceCoreDialog Babble4(5);
 
 };
 

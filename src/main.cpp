@@ -1,3 +1,10 @@
+/**
+ * TODO & FIXME: Reconsider how this file works.
+ * It's marked as a .h so it can be optionally included by main.cpp depending on
+ * the compile profile, but that seems like a dumb hack to a basic issue.
+ * Check how other projects manage this.
+ */
+
 #include "Arduino.h"
 
 #include "os48.h"
@@ -8,8 +15,8 @@
 
 // DialogEngine
 #include "SoftwareSerial.h"
-#include "Potatos/DialogEngine/DialogEngine.h"
 #include "Driver/Dialog/DfPlayerDriver/Driver.h"
+#include "Potatos/DialogEngine/DialogEngine.h"
 
 os48::Scheduler* scheduler = os48::Scheduler::get();
 os48::Task* task1 = NULL;
@@ -48,15 +55,13 @@ void blink2()
 
     // DialogEngine Hardware
     SoftwareSerial serial(10, 11); // RX, TX
-    DialogEngineDfPlayerDriver::Config dialogConfig;
+    DialogEngineDfPlayerDriver::Config dialogConfig = {3, 10};
 
-    // DialogEngine
     DialogEngineDfPlayerDriver dialogDriver(serial, dialogConfig);
     DialogEngine dialogEngine(dialogDriver);
 
     // Create Space Core
     SpaceCore spaceCore(dialogEngine);
-
 
 // Now define a static Tick function so we can use os48 Task Function Pointers
 void SpaceCoreTick()
@@ -76,8 +81,6 @@ void setup()
     Serial.begin(9600);
     Serial.println("KERNEL BOOT");
 
-    dialogConfig.busyPin = 3;
-    dialogConfig.volume = 20;
 
 // TODO: OR48 needs to support Delegate functions in order to use object
 //       instances instead of statics. Boo I say. Boo.
@@ -92,7 +95,7 @@ void setup()
     task3 = scheduler->createTask(&blink2, 60);
 
     // Run
-    dialogDriver.boot();
+    dialogEngine.boot();
     spaceCore.boot();
     scheduler->start();
 }

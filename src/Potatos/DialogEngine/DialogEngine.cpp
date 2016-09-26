@@ -3,6 +3,10 @@
 DialogEngine::DialogEngine(DialogEngineDriver &driverInstance)
 {
     driver = &driverInstance;
+}
+
+void DialogEngine::boot()
+{
     driver->boot();
 }
 

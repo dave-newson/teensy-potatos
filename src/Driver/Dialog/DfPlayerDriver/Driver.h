@@ -32,7 +32,7 @@ public:
      * Dependency Injction
      * Requires a serial port on boot
      */
-    DialogEngineDfPlayerDriver(SoftwareSerial &pSerial, Config userConfig);
+    DialogEngineDfPlayerDriver(SoftwareSerial &pSerial, Config &userConfig);
 
     /**
      * Boot the DialogEngine.

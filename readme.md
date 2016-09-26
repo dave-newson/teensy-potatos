@@ -1,28 +1,6 @@
 # PotatOS, Aperture Science Multiple-Personality Core
 
-No documentation here yet. See below for rambling concepts.
-
-## Renaming
-
-### Hardware vs Drivers (adapters?)
-
-Consider renaming the Hardware to Driver.
-
-```
-DialogEngine->driver->sayDialog();
-DialogEngineDriverDfPlayer {}
-```
-
-### Util vs Framework
-
-Util becomes Framework. Framework are bits and bobs?
-PotatOS is not the framework. IT's the app.
-
-### Service vs PoatOS
-
-PotatOS is the core - so that becomes the main body?
- DialogDriver? Gesture? All run from PotatOS Core?
-
+No documentation here yet. See below for rambling concepts
 
 ## Space Core Test Behaviour
 

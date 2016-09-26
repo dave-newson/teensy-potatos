@@ -19,6 +19,11 @@ public:
     DialogEngine(DialogEngineDriver &adapter);
 
     /**
+     * Boot the engine
+     */
+    void boot(void);
+
+    /**
      * Say the corresponding line of dialog
      * Each line has a numeric value. Suggest using constants to track them.
      */
