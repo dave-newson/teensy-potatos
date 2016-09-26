@@ -1,6 +1,6 @@
 #include "SpaceCore.h"
 #include "Dialog/SpaceCoreDialog.h"
-#include "Framework/Collection/Collection.h"
+#include "Framework/Collection/Collection.hpp"
 #include "os48.h"
 #include "Arduino.h"
 
